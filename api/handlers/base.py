@@ -1,8 +1,9 @@
 from json import dumps, loads
 from tornado.web import RequestHandler
+from des import DesKey
 
 class BaseHandler(RequestHandler):
-
+    key = DesKey(bytes("thebestsecretkey", "utf-8"))
     @property
     def db(self):
         return self.application.db

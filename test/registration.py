@@ -28,7 +28,6 @@ class RegistrationHandlerTest(BaseTest):
 
         response = self.fetch('/registration', method='POST', body=dumps(body))
         self.assertEqual(200, response.code)
-
         body_2 = json_decode(response.body)
         self.assertEqual(email, body_2['email'])
         self.assertEqual(display_name, body_2['displayName'])
