@@ -26,7 +26,7 @@ class RegistrationHandler(BaseHandler):
             if not isinstance(password, str):
                 raise Exception()
 
-            #TODO: Add adress, FULL NAME, DOB, Phone Number, Disabilities
+            #TODO: Add adress, FULL NAME, DOB, Disabilities
             phone_number = body.get('phoneNumber')
             phone_number_bytes=bytes(phone_number, "utf-8")
             phone_number_cipher_bytes = self.key.encrypt(phone_number_bytes)
