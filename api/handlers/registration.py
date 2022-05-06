@@ -32,6 +32,26 @@ class RegistrationHandler(BaseHandler):
             phone_number_cipher_bytes = self.key.encrypt(phone_number_bytes)
             phone_number_ciphertext = phone_number_cipher_bytes.hex()
 
+            address = body.get('address')
+            address_bytes = bytes(address, "utf-8")
+            address_cipher_bytes = self.key.encrypt(address_bytes)
+            address_ciphertext = address_cipher_bytes.hex()
+
+            full_name = body.get('fullName')
+            full_name_bytes = bytes(full_name, "utf-8")
+            full_name_cipher_bytes = self.key.encrypt(full_name_bytes)
+            full_name_ciphertext = full_name_cipher_bytes.hex()
+
+            dob = body.get('dob')
+            dob_bytes = bytes(dob, "utf-8")
+            dob_cipher_bytes = self.key.encrypt(dob_bytes)
+            dob_ciphertext = dob_cipher_bytes.hex()
+
+            disabilities = body.get('disabilities')
+            disabilities_bytes = bytes(disabilities, "utf-8")
+            disabilities_cipher_bytes = self.key.encrypt(disabilities_bytes)
+            disabilities_ciphertext = disabilities_cipher_bytes.hex()
+
             display_name = body.get('displayName')
             if display_name is None:
                 display_name = email
@@ -65,7 +85,11 @@ class RegistrationHandler(BaseHandler):
             'email': email,
             'password': hashed_password.hex(),
             'displayName': display_name,
-            'phoneNumber': phone_number_ciphertext
+            'phoneNumber': phone_number_ciphertext,
+            'address':address_ciphertext,
+            'fullName':full_name_ciphertext,
+            'dob':dob_ciphertext,
+            'disabilities':disabilities_ciphertext
         })
 
         self.set_status(200)
